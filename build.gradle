@@ -20,6 +20,21 @@ allprojects {
     repositories {
         jcenter()
     }
+    
+    ext.baseVersion = "0.1"
+    ext.snapshotVersion = true
+  
+    group = "org.sonarqube"
+    version = "$baseVersion" + (snapshotVersion ? "-SNAPSHOT" : "")    
+    
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Java :: Simple Project :: SonarQube Scanner for Gradle"
+        property "sonar.projectKey", "org.sonarqube:java-gradle-simple"
+        property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+    }
 }
 
 task clean(type: Delete) {
